@@ -7,21 +7,40 @@ DST_PATH = "D:\\"
 search_path = []
 copy_path = []
 thread_list = []
+copy_thread_list = []
+
+copy_path_mutex = threading.Lock()
 
 def copy_to_dst_path(copy_path):
+	global copy_path_mutex
 	while len(copy_path) != []:
-		dir = copy_path.pop()
-		with open(dir,'rb') as src_file:
-			with open(DST_PATH+dir,'a') as dst_file:
-				flag = True
-				while flag:
-					try:
-						buf = src_file.read(4096)
-						dst_file.write(buf)
-					except EOFError:
-						src_file.close()
-						dst_file.close()
-						flag = False
+		try:
+			copy_path_mutex.acquire()
+			dir = copy_path.pop()
+			copy_path_mutex.release()
+			src_file = open(dir,'rb')
+		except FileNotFoundError:
+			print(dir+" not found")
+			continue
+		except IndexError:
+			break
+		path = os.path.dirname(dir)
+		print(DST_PATH+path[0])
+		if not os.path.exists(DST_PATH+path):
+			os.mkdir(DST_PATH+path)
+		dst_file = open(DST_PATH+dir,'wb')
+		print("open "+DST_PATH+dir)
+		flag = True
+		while flag:
+			try:
+				buf = src_file.read(4096)
+				dst_file.write(buf)
+				# print(dst_file.name)
+			except EOFError:
+				src_file.close()
+				dst_file.close()
+				print("close "+DST_PATH+dir)
+				flag = False				
 
 def get_from_search_path(search_path,copy_path):
 	dir = search_path.pop()
@@ -53,15 +72,15 @@ def main():
 				main_thread.start()
 			for thread in thread_list:
 				thread.join()
-	for i in range(5):
-		thread = threading.Thread(target=copy_to_dst_path,args=(copy_path,))
-		thread_list.append(thread)
-		thread.start()
-	for thread in thread_list:
+	for i in range(10):
+		copy_thread = threading.Thread(target=copy_to_dst_path,args=(copy_path,))
+		copy_thread_list.append(thread)
+		copy_thread.start()
+	for thread in copy_thread_list:
 		thread.join()
 
-	print(search_path)
-	print(copy_path)
+	# print(search_path)
+	# print(copy_path)
 	print(len(copy_path))
 
 
