@@ -1,0 +1,157 @@
+[2,1,9,8,6,5,4]
+找出一个给定list中最大及最小的元素，
+使用递归的方法；
+
+def minmax(L, start, end):
+  """
+     获取到L的最大最小值的元组
+  """
+  if end-start <= 1:
+     return (max(L[start],L[end]),
+             min(L[start],L[end]))
+  else:
+     max1,min1 = minmax(L, start, (start+end)/2)
+     max2,min2 = minmax(L, (start+end)/2+1, end)
+     return (max(max1,max2), min(min1,min2))
+
+汉诺塔：
+    2，A ——》 C
+    A -》B，
+    A -》C,
+    B -》C；
+
+
+anaconda安装新的包：
+anaconda prompt
+  先尝试用：
+     conda install builtwith
+  如果装不上：
+     pip install builtwith
+    
+测试新浪网站的技术架构：
+import builtwith
+builtwith.parse("http://www.sina.com.cn")
+Out[3]: {'javascript-frameworks': 
+['Prototype', 'jQuery'], 
+'web-servers': ['Nginx']}
+
+(base) C:\Users\Administrator>pip install python-whois
+
+import whois
+
+whois.whois("http://www.baidu.com")
+Out[5]: 
+{'address': '3F Baidu Campus No.10, Shangdi 10th Street Haidian District',
+ 'city': 'Beijing',
+ 'country': 'CN',
+ 'creation_date': [datetime.datetime(1999, 10, 11, 11, 5, 17),
+  datetime.datetime(1999, 10, 11, 4, 5, 17)],
+ 'dnssec': 'unsigned',
+ 'domain_name': ['BAIDU.COM', 'baidu.com'],
+ 'emails': ['abusecomplaints@markmonitor.com', 'domainmaster@baidu.com'],
+ 'expiration_date': [datetime.datetime(2026, 10, 11, 11, 5, 17),
+  datetime.datetime(2026, 10, 11, 0, 0)],
+ 'name': 'Domain Admin',
+ 'name_servers': ['DNS.BAIDU.COM',
+  'NS2.BAIDU.COM',
+  'NS3.BAIDU.COM',
+  'NS4.BAIDU.COM',
+  'NS7.BAIDU.COM',
+  'dns.baidu.com',
+  'ns3.baidu.com',
+  'ns4.baidu.com',
+  'ns7.baidu.com',
+  'ns2.baidu.com'],
+ 'org': 'Beijing Baidu Netcom Science Technology Co., Ltd.',
+ 'referral_url': None,
+ 'registrar': 'MarkMonitor, Inc.',
+ 'state': 'Beijing',
+ 'status': ['clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited',
+  'clientTransferProhibited https://icann.org/epp#clientTransferProhibited',
+  'clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited',
+  'serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited',
+  'serverTransferProhibited https://icann.org/epp#serverTransferProhibited',
+  'serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited',
+  'clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)',
+  'clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)',
+  'clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)',
+  'serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)',
+  'serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)',
+  'serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)'],
+ 'updated_date': [datetime.datetime(2017, 7, 28, 2, 36, 28),
+  datetime.datetime(2017, 7, 27, 19, 36, 28)],
+ 'whois_server': 'whois.markmonitor.com',
+ 'zipcode': '100085'}
+
+get 传递参数的方式:
+ http://www.abc.com/?name=XXX&password=YYY
+
+https://www.baidu.com/s?wd=%E6%B1%89%E8%AF%BA%E5%A1%94
+
+
+from urllib import request
+
+help(request.Request)
+Help on class Request in module urllib.request:
+
+class Request(builtins.object)
+ |  Methods defined here:
+ |  
+ |  __init__(self, url, data=None, headers={}, origin_req_host=None, unverifiable=False, method=None)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  add_header(self, key, val)
+ |  
+ |  add_unredirected_header(self, key, val)
+ |  
+ |  get_full_url(self)
+ |  
+ |  get_header(self, header_name, default=None)
+ |  
+ |  get_method(self)
+ |      Return a string indicating the HTTP request method.
+ |  
+ |  has_header(self, header_name)
+ |  
+ |  has_proxy(self)
+ |  
+ |  header_items(self)
+ |  
+ |  remove_header(self, header_name)
+ |  
+ |  set_proxy(self, host, type)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  data
+ |  
+ |  full_url
+
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cache-Control: max-age=0
+Cookie: UOR=,www.sina.com.cn,; SGUID=1525587875754_77623892; SINAGLOBAL=124.207.192.18_1525588049.841063; Apache=124.207.192.18_1525588049.841066; ULV=1525587883044:2:2:2:124.207.192.18_1525588049.841066:1525587875471; lxlrttp=1525444416; U_TRS1=00000012.c2e85c80.5aeea06e.948479f6; U_TRS2=00000012.c2f45c80.5aeea06e.fd78b0ce; CNZZDATA1271230489=1908984970-1525585884-null%7C1525591243
+Host: www.sina.com.cn
+If-Modified-Since: Sun, 06 May 2018 08:05:48 GMT
+Proxy-Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36
+
+
+1) 使用一个User-Agent池(至少有10个UA)，打印出当前的UA，
+每隔两秒向新浪服务器发起一次请求，持续一分钟，
+获取其页面信息，并把返回的结果写到本地文件；
+
+**2）有一个文件夹，下面有1000+文件，
+把这个文件夹中的所有文件拷贝到另一个文件夹下；
+要求：使用多进程（多线程）或进程池（线程池）；
+使用Hash（哈希）

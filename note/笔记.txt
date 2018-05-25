@@ -1,0 +1,70 @@
+python01 day10 1215am 138.50
+
+****python中的=相当于改变了变量间的绑定关系。python中一切为对象 
+
+****递归调用的特点：
+	1、自己调用自己；
+	2、输入参数需要可变，否则进入死循环
+	3、递归调用结构类似于树型结构
+****深度优先是一个递归的过程
+****动态规划：DP(Dynamic Programming):使用二维数组完成C(m,n)。百度地图线路规划算法
+****深度优先和广度优先的选择：
+	
+****python多进程与多线程的问题：
+	GIL(全局解释锁)：同一个时刻只有一个线程在跑。所以在双核处理器下，双线程对每个核的占用率只有50%。
+		多进程没有GIL，所以在双核处理器下，两个进程都占用了每个核。
+	我们所用的Python是Cpython，它有GIL，JPython，Pypy是没有GIL的。可以用C语言实现多线程的模型。（找老师要代码）
+****爬虫程序中什么时候应该用多进程、什么时候应该用多线程或协程。
+	结论：对于计算密集型的程序，适合使用多进程。对于IO密集型的程序，适合使用多线程（协程）
+****计算密集型：对CPU损耗比较大。如算法、数据处理。
+	IO密集型：对于磁盘和网络需要等待输入输出的场景。比如网络下载，网络爬虫；
+****进程池：from multiprocessing import Pool,Manager
+****进程池拷贝文件：
+	1、进程池间通信用Manager
+	2、验证文件是否拷贝完整，使用Hash的方法
+	3、拷贝文件的时候用rb、wb的方式
+
+
+****有道翻译：
+	使用了Ajax请求.
+	XHR：XML Http Request简写
+	XML多用在配置文件中，JSON多与js同时存在。
+
+****哈希：
+	每一次哈希就是打一次指纹。在数据量小的情况下可以认为指纹唯一。但当数据量大的时候就有可能产生碰撞，解决办法是做哈希链或多次哈希。
+	应用场景：比对url是否相同时可以比较两个url的哈希值是否相同。
+	应用：
+	import hashlib
+	def hashstr(strInfo):
+		h = hashlib.sha256()
+		h.update(strInfo.encode("utf-8"))	#对一段字符串进行utf-8编码
+		return h.hexdigest()
+
+	def hashFile(fileName):
+		try:
+			f = open(fileName)
+		except IOError:
+			return None
+		h = hashlib.md5()
+		while True:
+			chunk = f.read(BUFFSIZE)
+			if not chunk:
+				break
+			h.update(chunk.encode('utf-8'))
+		f.close()
+		return h.hexdigest()
+
+****提取信息：
+	XPath：提取数据的语言；lxml是一个用来处理XML，是局部加载的方式，XPath的第三方Python库；
+
+****prettify()方法，格式化文本
+****Beautiful Soup是全局加载方式
+	soup.findAl()
+
+****正则表达式30分钟入门教程
+****尽量用懒惰模式
+****使用浏览器尽量使用Headless Browser 无界面浏览器selenium
+****cookie有时效性，使用http下的cookiejar包来进行管理
+****GOF 23种设计模式
+****偏函数 functools，函数式编程来传递一个默认参数。
+	functools.partial

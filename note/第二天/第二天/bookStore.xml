@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<bookstore>
+	<book>
+		<title>Harry Potter</title>
+		<price>29.99</price>
+		<pageNumer>102</pageNumer>
+	</book>
+	<book>
+		<title>Python爬虫</title>
+		<price>39.99</price>
+	</book>
+</bookstore>
